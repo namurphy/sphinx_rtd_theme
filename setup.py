@@ -21,7 +21,7 @@ class WebpackBuildCommand(distutils.cmd.Command):
         pass
 
     def run(self):
-        if not 'CI' in os.environ and not 'TOX_ENV_NAME' in os.environ:
+        if 'CI' not in os.environ and 'TOX_ENV_NAME' not in os.environ:
             subprocess.run(['npm', 'install'], check=True)
             subprocess.run(['node_modules/.bin/webpack', '--config', 'webpack.prod.js'], check=True)
 
